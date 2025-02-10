@@ -1,169 +1,307 @@
 :root {
-    --primary-color: #2d3436;
-    --secondary-color: #000080;
-    --text-color: #2d3436;
-    --bg-color: #f5f6fa;
+  --primary-color: #2d3436;
+  --secondary-color: #000080;
+  --text-color: #2d3436;
+  --bg-color: #f5f6fa;
 }
-/* body styles */
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 .navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: transparent;
-    z-index: 1000;
-    padding: 15px 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1000;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-brand {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 6px;
-    color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 6px;
+  color: #ffffff;
 }
 
-.navbar-brand, 
+.navbar-nav {
+  display: flex;
+  gap: 20px; /* Increased spacing between navbar links */
+}
+
+.navbar-brand,
 .navbar-nav .nav-link {
-    color: #ffffff;
-    transition: color 0.3s ease;
+  color: #ffffff;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  position: relative;
 }
 
-.navbar-brand:hover, 
+.navbar-brand:hover {
+  transform: none;
+} /* No hover effect on Mith */
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background-color: #dfe6e9;
+  transition: width 0.3s ease;
+}
+
 .navbar-nav .nav-link:hover {
-    color: #dfe6e9;
+  color: #dfe6e9;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
 }
 
 .navbar-toggler {
-    border: none;
-    background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .hero-section {
-    min-height: 100vh;
-    /* background: linear-gradient(45deg, #2d3436, #5b5e5f); */
-    background: black;
-    color: white;
-    position: relative;
-    overflow: hidden;
+  min-height: 100vh;
+  background: black;
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-shapes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.1;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  z-index: 1;
 }
 
 .section-title {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
 }
 
 .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background-color: var(--secondary-color);
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--secondary-color);
 }
 
 /* Fixed size for project cards */
 .project-card {
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 
+.project-card:hover {
+  transform: none;
+  box-shadow: none;
+} /* Removed hover effect from project cards */
+
 .project-card img {
-    width: 100%;
-    height: 200px;
+  width: 100%;
+  height: 200px;
 }
 
 .project-card .card-body {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
 
 .project-card .card-body .card-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-card .card-body a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .project-card .card-body a:hover {
-    color: #0984e3;
-    text-decoration: underline;
+  color: #0984e3;
+  text-decoration: underline;
 }
 
 .skill-item {
-    height: 150px;
-    overflow: hidden;
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  height: 150px;
+  overflow: hidden;
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+.skill-item:hover {
+  transform: none;
+  box-shadow: none;
+} 
+
 .contact-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .social-links a {
-    color: var(--primary-color);
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+  color: var(--primary-color);
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
+  transform: scale(1.2);
 }
 
+/* General Mobile Fixes */
 @media (max-width: 768px) {
-    .hero-section {
-        min-height: 70vh;
-    }
+  /* Adjust navbar for mobile */
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .navbar-nav {
+    gap: 15px;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    min-height: 70vh;
+    text-align: center;
+    padding: 20px;
+    font-size: smaller;
+  }
+
+  .hero-section img {
+    width: 80%;
+    height: auto;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .hero-content {
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px;
+    font-size: medium; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    height: 100%; 
+  }
+
+  .hero-content h1 {
+    white-space: nowrap; 
+    margin: 0; 
+    padding: 0;
+    text-align: center;
+  }
+
+  /* Projects Section */
+  .project-card {
+    height: auto; 
+    margin-bottom: 20px;
+  }
+
+  .project-card img {
+    height: 200px;
+    width: 100%;
+  }
+
+  /* About Section */
+  #about .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .col-lg-6 {
+    margin-bottom: 15px; 
+  }
+
+  /* Contact Section */
+  .contact-form {
+    padding: 1rem;
+  }
+
+  .social-links a {
+    font-size: 1.5rem;
+    margin: 0 10px;
+  }
+
+  /* Adjust for mobile in skills section */
+  .skill-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: none;
+  }
+  /* Navbar link styles for mobile view */
+  .navbar-collapse .navbar-nav .nav-link {
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 5px;
+  }
+
+  /* On hover or focus, change the background */
+  .navbar-collapse .navbar-nav .nav-link:hover,
+  .navbar-collapse .navbar-nav .nav-link:focus {
+    background-color: #2d3436;
+    color: white;
+  }
+
+  /* When the navbar is opened */
+  .navbar-collapse.show .navbar-nav .nav-link {
+    background-color: #dfe6e9;
+    color: #2d3436;
+  }
 }
